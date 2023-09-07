@@ -26,7 +26,7 @@ const LoginScreen: React.FC = () => {
 
   const onSubmit = handleSubmit(data => {
     console.log(data);
-    navigation.navigate(APP_ROUTES.draw);
+    navigation.navigate(APP_ROUTES.bottom_tab_bar);
   });
 
   return (
