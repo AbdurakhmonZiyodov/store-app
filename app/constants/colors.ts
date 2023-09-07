@@ -1,0 +1,16 @@
+export default {
+  white: '#ffffff',
+  white2: '#F2F2F7',
+  white3: 'rgba(217, 217, 217, 1)',
+  black: '#000000',
+  black2: '#222222',
+  black3: '#9B8B97',
+  lightblack: '#3C3C434D',
+  dark: '#393E5D',
+  dark2: 'rgba(60, 60, 67, 0.30)',
+  error: '#FB3F1C',
+  pink: '#FF00B8',
+  pure: '#9E00FF',
+  blue: '#0077FF',
+  transparent: 'transparent',
+};
