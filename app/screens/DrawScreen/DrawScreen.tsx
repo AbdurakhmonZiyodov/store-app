@@ -1,7 +1,7 @@
 import RN from 'RN';
 import Container from 'components/Container';
 import colors from 'constants/colors';
-import React, {useCallback} from 'react';
+import React, {useCallback, useEffect, useMemo} from 'react';
 import {styles} from './DrawScreen.styles';
 import ArrowLeftTallIcon from 'assets/icons/ArrowLeftTallIcon';
 import {HIT_SLOP} from 'constants/utils';
@@ -9,8 +9,9 @@ import LightLogoIcon from 'assets/icons/LightLogoIcon';
 import {SIZES} from 'constants/sizes';
 import QuestionIcon from 'assets/icons/QuestionIcon';
 
-import {map} from 'lodash';
+import {map, toString} from 'lodash';
 import {useNavigation} from '@react-navigation/native';
+import useCountDown from 'hooks/useCountDown';
 
 const list = [
   {
@@ -35,6 +36,21 @@ const list = [
 
 const DrawScreen: React.FC = () => {
   const navigation = useNavigation();
+  const {secondsLeft, start} = useCountDown();
+
+  const secondStr = useMemo(() => {
+    let count: string | number = secondsLeft;
+
+    if (count < 10) {
+      count = `0${count}`;
+    }
+
+    return [...toString(count)];
+  }, [secondsLeft]);
+
+  useEffect(() => {
+    start(45);
+  }, [start]);
 
   const goBack = useCallback(() => {
     navigation.goBack();
@@ -84,13 +100,13 @@ const DrawScreen: React.FC = () => {
               <RN.View
                 style={[styles.timerTextContainer, styles.pinkContainer]}>
                 <RN.Text style={[styles.timerText, styles.lightText]}>
-                  3
+                  {secondStr[0] || 0}
                 </RN.Text>
               </RN.View>
               <RN.View
                 style={[styles.timerTextContainer, styles.pinkContainer]}>
                 <RN.Text style={[styles.timerText, styles.lightText]}>
-                  5
+                  {secondStr[1] || 0}
                 </RN.Text>
               </RN.View>
             </RN.View>

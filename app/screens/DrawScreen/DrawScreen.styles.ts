@@ -54,6 +54,7 @@ export const styles = RN.StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 30,
     borderRadius: 40,
+    width: 70,
   },
   flexSection: {
     flexDirection: 'row',

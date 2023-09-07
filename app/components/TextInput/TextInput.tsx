@@ -43,7 +43,7 @@ const TextInput: FC<InputProps> = ({
         <RN.TouchableOpacity
           activeOpacity={0.5}
           style={styles.eyeContainer}
-          onPress={eyeVisiblity.toggleVisibility}>
+          onPress={eyeVisiblity.toggle}>
           <Icon width={24} color={colors.white3} />
         </RN.TouchableOpacity>
       )}

@@ -56,7 +56,7 @@ export default function MyTabs() {
         component={component}
         options={{
           tabBarIcon: ({focused}) => (
-            <Icon width={27} color={activeColor(focused)} />
+            <Icon width={30} color={activeColor(focused)} />
           ),
         }}
       />
