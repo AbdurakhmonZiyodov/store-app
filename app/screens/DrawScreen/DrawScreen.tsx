@@ -105,7 +105,7 @@ const DrawScreen: React.FC = () => {
 
           <RN.View style={styles.listContainer}>
             {map(list, item => (
-              <RN.View key={item.id}>
+              <RN.TouchableOpacity activeOpacity={0.5} key={item.id}>
                 <RN.View style={styles.itemCircle}>
                   <RN.Text style={styles.itemCircleText}>{item.count}</RN.Text>
                 </RN.View>
@@ -113,7 +113,7 @@ const DrawScreen: React.FC = () => {
                   <RN.Image source={item.imgSource} style={styles.itemImage} />
                 </RN.View>
                 <RN.Text style={styles.itemText}>{item.name}</RN.Text>
-              </RN.View>
+              </RN.TouchableOpacity>
             ))}
           </RN.View>
         </RN.View>

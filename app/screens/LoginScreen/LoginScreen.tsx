@@ -1,19 +1,19 @@
+import {useNavigation} from '@react-navigation/native';
 import RN from 'RN';
 import DarkLogoIcon from 'assets/icons/DarkLogoIcon';
+import LeftArrowIcon from 'assets/icons/LeftArrowIcon';
+import VKIcon from 'assets/icons/VKIcon';
+import YaIcon from 'assets/icons/YaIcon';
 import Container from 'components/Container';
+import Dismessible from 'components/Dismessible';
 import {TextField} from 'components/form';
 import colors from 'constants/colors';
+import {HIT_SLOP} from 'constants/utils';
+import {APP_ROUTES} from 'navigation/routes';
 import React from 'react';
 import {useForm} from 'react-hook-form';
 import {styles} from './LoginScreen.styles';
-import YaIcon from 'assets/icons/YaIcon';
-import VKIcon from 'assets/icons/VKIcon';
-import LeftArrowIcon from 'assets/icons/LeftArrowIcon';
-import {HIT_SLOP} from 'constants/utils';
-import Dismessible from 'components/Dismessible';
-import {useNavigation} from '@react-navigation/native';
-import {APP_ROUTES} from 'navigation/routes';
-import {NavigationType} from 'navigation/AppNavigator';
+import {NavigationType} from 'navigation/navigation.types';
 
 type FormData = {
   login: string;

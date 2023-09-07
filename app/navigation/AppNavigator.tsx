@@ -1,30 +1,15 @@
-import {NavigationContainer, RouteProp} from '@react-navigation/native';
-import {
-  StackNavigationProp,
-  TransitionPresets,
-  createStackNavigator,
-} from '@react-navigation/stack';
+import {NavigationContainer} from '@react-navigation/native';
+import {TransitionPresets, createStackNavigator} from '@react-navigation/stack';
 import RN from 'RN';
 import React, {FC} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import LoginScreen from 'screens/LoginScreen/LoginScreen';
 import {styles} from './AppNavigator.styles';
-import {APP_ROUTES} from './routes';
 import MyTabs from './BottomTabNavigation';
+import {RootAppStackParamList} from './navigation.types';
+import {APP_ROUTES} from './routes';
 
-export type RootStackParamList = {
-  [APP_ROUTES.login]: undefined;
-  [APP_ROUTES.bottom_tab_bar]: undefined;
-};
-
-export type AppRouteType<T extends keyof RootStackParamList> = RouteProp<
-  RootStackParamList,
-  T
->;
-
-export type NavigationType = StackNavigationProp<RootStackParamList>;
-
-const Stack = createStackNavigator<RootStackParamList>();
+const Stack = createStackNavigator<RootAppStackParamList>();
 
 const AppNavigator: FC = () => (
   <SafeAreaView style={styles.navigator}>

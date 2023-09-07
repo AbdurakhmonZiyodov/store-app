@@ -10,15 +10,9 @@ import {map} from 'lodash';
 import React, {useCallback} from 'react';
 import DrawScreen from 'screens/DrawScreen';
 import {APP_TAB_ROUTES} from './routes';
+import {RootTabBarParamList} from './navigation.types';
 
-export type RootStackParamList = {
-  [APP_TAB_ROUTES.home]: undefined;
-  [APP_TAB_ROUTES.gitfs]: undefined;
-  [APP_TAB_ROUTES.label]: undefined;
-  [APP_TAB_ROUTES.user]: undefined;
-};
-
-const Tab = createBottomTabNavigator<RootStackParamList>();
+const Tab = createBottomTabNavigator<RootTabBarParamList>();
 
 const options = {
   tabBarHideOnKeyboard: true,
