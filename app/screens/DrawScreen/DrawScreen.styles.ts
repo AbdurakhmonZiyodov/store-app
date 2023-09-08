@@ -124,6 +124,7 @@ export const styles = RN.StyleSheet.create({
     backgroundColor: '#FF00B8',
     alignItems: 'center',
     justifyContent: 'center',
+    marginBottom: 10,
   },
   participateText: {
     fontSize: 16,
