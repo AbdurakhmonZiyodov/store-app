@@ -11,3 +11,14 @@ export const LoginQuery = gql`
     }
   }
 `;
+
+export const RefreshQuery = gql`
+  query MyQuery($refreshToken: String!) {
+    refresh(refreshToken: $refreshToken) {
+      ... on Token {
+        __typename
+        token
+      }
+    }
+  }
+`;

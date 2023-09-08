@@ -11,6 +11,7 @@ import React, {useCallback} from 'react';
 import DrawScreen from 'screens/DrawScreen';
 import {APP_TAB_ROUTES} from './routes';
 import {RootTabBarParamList} from './navigation.types';
+import Container from 'components/Container';
 
 const Tab = createBottomTabNavigator<RootTabBarParamList>();
 
@@ -93,8 +94,8 @@ function LabelScreen() {
 
 function UserScreen() {
   return (
-    <RN.View>
+    <Container isTop>
       <RN.Text>UserScreen</RN.Text>
-    </RN.View>
+    </Container>
   );
 }

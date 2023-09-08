@@ -36,7 +36,10 @@ const AppNavigator: FC = () => {
             screenOptions={{
               headerShown: false,
               gestureEnabled: false,
-            }}>
+            }}
+            initialRouteName={
+              isAuthenticated ? APP_ROUTES.bottom_tab_bar : APP_ROUTES.login
+            }>
             {isAuthenticated ? renderPrivateRoutes() : renderPublicRoutes()}
           </Stack.Navigator>
         </NavigationContainer>

@@ -37,9 +37,7 @@ const LoginScreen: React.FC = () => {
   });
 
   const navigation = useNavigation<NavigationType>();
-  const {logIn, loading, error, data} = useLogin();
-
-  console.log({loading, data, error});
+  const {logIn, loading, data} = useLogin();
 
   useEffect(() => {
     if (hasIn(data, 'login.accessToken') && hasIn(data, 'login.refreshToken')) {

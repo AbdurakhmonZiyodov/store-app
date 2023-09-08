@@ -6,10 +6,9 @@ import Container from 'components/Container';
 import colors from 'constants/colors';
 import {SIZES} from 'constants/sizes';
 import {HIT_SLOP} from 'constants/utils';
-import React, {useCallback, useEffect, useMemo} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import {styles} from './DrawScreen.styles';
 
-import {useNavigation} from '@react-navigation/native';
 import useCountDown from 'hooks/useCountDown';
 import {map, toString} from 'lodash';
 
@@ -35,7 +34,6 @@ const list = [
 ];
 
 const DrawScreen: React.FC = () => {
-  const navigation = useNavigation();
   const {secondsLeft, start} = useCountDown();
 
   const secondStr = useMemo(() => {
@@ -52,19 +50,13 @@ const DrawScreen: React.FC = () => {
     start(45);
   }, [start]);
 
-  const goBack = useCallback(() => {
-    navigation.goBack();
-  }, [navigation]);
   return (
     <Container isTop isBottom backgroundColor={colors.dark}>
       <RN.View style={[RN.StyleSheet.absoluteFill, styles.pureView]} />
       <RN.View style={styles.container}>
         <RN.View>
           <RN.View>
-            <RN.TouchableOpacity
-              hitSlop={HIT_SLOP}
-              style={styles.backButton}
-              onPress={goBack}>
+            <RN.TouchableOpacity hitSlop={HIT_SLOP} style={styles.backButton}>
               <ArrowLeftTallIcon width={28} />
             </RN.TouchableOpacity>
             <RN.Text style={styles.title}>Розыгрыш</RN.Text>

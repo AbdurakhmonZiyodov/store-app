@@ -1,22 +1,22 @@
 import GraphqlProvider from 'apollo/GraphqlProvider';
+import AppLoading from 'components/Loading/AppLoading';
 import useToken from 'hooks/useToken';
 import {observer} from 'mobx-react';
 import AppNavigator from 'navigation/AppNavigator';
 import React, {useEffect} from 'react';
 
-// const client = new ApolloClient({
-//   uri: 'http://45.12.74.28/graphql',
-//   cache: new InMemoryCache(),
-// });
-
 const Inner = observer(() => {
-  const {didMount} = useToken();
+  const {didMount, getTokens} = useToken();
+
+  console.log(getTokens());
 
   useEffect(() => {
     didMount();
-  }, [didMount]);
+  }, [didMount, getTokens]);
+
   return (
     <GraphqlProvider>
+      <AppLoading />
       <AppNavigator />
     </GraphqlProvider>
   );
