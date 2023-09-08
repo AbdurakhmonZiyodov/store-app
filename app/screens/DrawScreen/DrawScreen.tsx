@@ -1,17 +1,17 @@
 import RN from 'RN';
+import ArrowLeftTallIcon from 'assets/icons/ArrowLeftTallIcon';
+import LightLogoIcon from 'assets/icons/LightLogoIcon';
+import QuestionIcon from 'assets/icons/QuestionIcon';
 import Container from 'components/Container';
 import colors from 'constants/colors';
+import {SIZES} from 'constants/sizes';
+import {HIT_SLOP} from 'constants/utils';
 import React, {useCallback, useEffect, useMemo} from 'react';
 import {styles} from './DrawScreen.styles';
-import ArrowLeftTallIcon from 'assets/icons/ArrowLeftTallIcon';
-import {HIT_SLOP} from 'constants/utils';
-import LightLogoIcon from 'assets/icons/LightLogoIcon';
-import {SIZES} from 'constants/sizes';
-import QuestionIcon from 'assets/icons/QuestionIcon';
 
-import {map, toString} from 'lodash';
 import {useNavigation} from '@react-navigation/native';
 import useCountDown from 'hooks/useCountDown';
+import {map, toString} from 'lodash';
 
 const list = [
   {

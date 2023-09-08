@@ -97,4 +97,5 @@ export const styles = RN.StyleSheet.create({
     color: colors.black,
     paddingVertical: 40,
   },
+  activeIndicator: {marginTop: 4},
 });

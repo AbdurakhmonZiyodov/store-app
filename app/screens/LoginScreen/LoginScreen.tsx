@@ -9,24 +9,50 @@ import Dismessible from 'components/Dismessible';
 import {TextField} from 'components/form';
 import colors from 'constants/colors';
 import {HIT_SLOP} from 'constants/utils';
-import {APP_ROUTES} from 'navigation/routes';
-import React from 'react';
-import {useForm} from 'react-hook-form';
-import {styles} from './LoginScreen.styles';
+import useToken from 'hooks/useToken';
+import {hasIn} from 'lodash';
 import {NavigationType} from 'navigation/navigation.types';
+import {APP_ROUTES} from 'navigation/routes';
+import React, {useEffect} from 'react';
+import {useForm} from 'react-hook-form';
+import {ActivityIndicator} from 'react-native';
+import {styles} from './LoginScreen.styles';
+import {useLogin} from './hooks/useLogin';
+import {observer} from 'mobx-react';
 
-type FormData = {
+export type LoginFormData = {
   login: string;
   password: string;
 };
 
-const LoginScreen: React.FC = () => {
-  const {handleSubmit, control} = useForm<FormData>();
-  const navigation = useNavigation<NavigationType>();
+const defaultValues = {
+  login: '',
+  password: '',
+};
 
-  const onSubmit = handleSubmit(data => {
-    console.log(data);
-    navigation.navigate(APP_ROUTES.bottom_tab_bar);
+const LoginScreen: React.FC = () => {
+  const tokenStore = useToken();
+  const {handleSubmit, control} = useForm<LoginFormData>({
+    defaultValues,
+  });
+
+  const navigation = useNavigation<NavigationType>();
+  const {logIn, loading, error, data} = useLogin();
+
+  console.log({loading, data, error});
+
+  useEffect(() => {
+    if (hasIn(data, 'login.accessToken') && hasIn(data, 'login.refreshToken')) {
+      tokenStore._set({
+        accessToken: data?.login?.accessToken,
+        refreshToken: data?.login?.refreshToken,
+      });
+      navigation.navigate(APP_ROUTES.bottom_tab_bar);
+    }
+  }, [data, navigation, tokenStore]);
+
+  const onSubmit = handleSubmit(async _data => {
+    await logIn({variables: _data});
   });
 
   return (
@@ -66,7 +92,14 @@ const LoginScreen: React.FC = () => {
               style={styles.logInButton}
               activeOpacity={0.5}
               onPress={onSubmit}>
-              <RN.Text style={styles.logInText}>Войти</RN.Text>
+              {loading ? (
+                <ActivityIndicator
+                  color={colors.white}
+                  style={styles.activeIndicator}
+                />
+              ) : (
+                <RN.Text style={styles.logInText}>Войти</RN.Text>
+              )}
             </RN.TouchableOpacity>
 
             <RN.TouchableOpacity>
@@ -101,4 +134,4 @@ const LoginScreen: React.FC = () => {
   );
 };
 
-export default LoginScreen;
+export default observer(LoginScreen);
