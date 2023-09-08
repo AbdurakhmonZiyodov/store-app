@@ -17,13 +17,13 @@ interface FormInputControllerProps<FieldsType extends {}> {
   error?: FieldError;
   control: Control<FieldsType>;
 }
-function inController<T extends {}>(Component: any) {
+function inController<T extends {}, V extends {}>(Component: any) {
   return function ({
     control,
     rules,
     name,
     ...props
-  }: FormInputControllerProps<T> & InputProps) {
+  }: FormInputControllerProps<T> & V) {
     return (
       <Controller
         control={control}
@@ -43,4 +43,4 @@ function inController<T extends {}>(Component: any) {
   };
 }
 
-export const TextField = inController<LoginFormData>(TextInput);
+export const TextField = inController<LoginFormData, InputProps>(TextInput);
