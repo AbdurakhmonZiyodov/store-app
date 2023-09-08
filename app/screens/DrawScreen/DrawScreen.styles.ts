@@ -49,6 +49,7 @@ export const styles = RN.StyleSheet.create({
   timerText: {
     fontWeight: '800',
     fontSize: 45,
+    color: colors.black,
   },
   timerTextContainer: {
     paddingHorizontal: 20,
