@@ -15,6 +15,7 @@ export const styles = RN.StyleSheet.create({
     lineHeight: 22,
     paddingVertical: 11,
     letterSpacing: -0.40799999237060547,
+    color: colors.black,
   },
   error: {
     borderColor: colors.error,

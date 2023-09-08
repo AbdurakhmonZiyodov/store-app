@@ -16,8 +16,8 @@ const Inner = observer(() => {
 
   return (
     <GraphqlProvider>
-      <AppLoading />
       <AppNavigator />
+      <AppLoading />
     </GraphqlProvider>
   );
 });
