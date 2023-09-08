@@ -12,6 +12,7 @@ import DrawScreen from 'screens/DrawScreen';
 import {APP_TAB_ROUTES} from './routes';
 import {RootTabBarParamList} from './navigation.types';
 import Container from 'components/Container';
+import useToken from 'hooks/useToken';
 
 const Tab = createBottomTabNavigator<RootTabBarParamList>();
 
@@ -79,7 +80,7 @@ function HomeScreen() {
 function GiftsScreen() {
   return (
     <RN.View>
-      <RN.Text>GiftsScreen</RN.Text>
+      <RN.Text style={{color: colors.black}}>GiftsScreen</RN.Text>
     </RN.View>
   );
 }
@@ -87,15 +88,25 @@ function GiftsScreen() {
 function LabelScreen() {
   return (
     <RN.View>
-      <RN.Text>LabelScreen</RN.Text>
+      <RN.Text style={{color: colors.black}}>LabelScreen</RN.Text>
     </RN.View>
   );
 }
 
 function UserScreen() {
+  const tokenStore = useToken();
+
+  const goBack = useCallback(() => {
+    RN.Alert.alert('Caution', 'Do you want to go out?', [
+      {text: 'yes', onPress: tokenStore._clear},
+      {text: 'no'},
+    ]);
+  }, [tokenStore._clear]);
+
   return (
     <Container isTop>
-      <RN.Text>UserScreen</RN.Text>
+      <RN.Text style={{color: colors.black}}>UserScreen</RN.Text>
+      <RN.Button title="log out" onPress={goBack} />
     </Container>
   );
 }

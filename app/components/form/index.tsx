@@ -1,9 +1,29 @@
 import TextInput from 'components/TextInput';
+import {InputProps} from 'components/TextInput/TextInput';
 import React from 'react';
-import {Controller, ControllerProps} from 'react-hook-form';
+import {
+  Control,
+  Controller,
+  FieldError,
+  RegisterOptions,
+  Path,
+} from 'react-hook-form';
+import {LoginFormData} from 'screens/LoginScreen/LoginScreen';
 
-function inController(Component: any) {
-  return function ({control, rules, name, ...props}: ControllerProps) {
+interface FormInputControllerProps<FieldsType extends {}> {
+  name: Path<FieldsType>;
+  defaultValue?: string;
+  rules?: RegisterOptions;
+  error?: FieldError;
+  control: Control<FieldsType>;
+}
+function inController<T extends {}>(Component: any) {
+  return function ({
+    control,
+    rules,
+    name,
+    ...props
+  }: FormInputControllerProps<T> & InputProps) {
     return (
       <Controller
         control={control}
@@ -23,4 +43,4 @@ function inController(Component: any) {
   };
 }
 
-export const TextField = inController(TextInput);
+export const TextField = inController<LoginFormData>(TextInput);

@@ -16,6 +16,7 @@ import {
   Dimensions,
   Button,
   StatusBar,
+  Alert,
 } from 'react-native';
 
 export default {
@@ -36,4 +37,5 @@ export default {
   Dimensions,
   Button,
   StatusBar,
+  Alert,
 };

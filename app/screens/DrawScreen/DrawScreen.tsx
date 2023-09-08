@@ -6,10 +6,11 @@ import Container from 'components/Container';
 import colors from 'constants/colors';
 import {SIZES} from 'constants/sizes';
 import {HIT_SLOP} from 'constants/utils';
-import React, {useEffect, useMemo} from 'react';
+import React, {useCallback, useEffect, useMemo} from 'react';
 import {styles} from './DrawScreen.styles';
 
 import useCountDown from 'hooks/useCountDown';
+import useToken from 'hooks/useToken';
 import {map, toString} from 'lodash';
 
 const list = [
@@ -35,6 +36,14 @@ const list = [
 
 const DrawScreen: React.FC = () => {
   const {secondsLeft, start} = useCountDown();
+  const tokenStore = useToken();
+
+  const goBack = useCallback(() => {
+    RN.Alert.alert('Caution', 'Do you want to go out?', [
+      {text: 'yes', onPress: tokenStore._clear},
+      {text: 'no'},
+    ]);
+  }, [tokenStore._clear]);
 
   const secondStr = useMemo(() => {
     let count: string | number = secondsLeft;
@@ -56,7 +65,10 @@ const DrawScreen: React.FC = () => {
       <RN.View style={styles.container}>
         <RN.View>
           <RN.View>
-            <RN.TouchableOpacity hitSlop={HIT_SLOP} style={styles.backButton}>
+            <RN.TouchableOpacity
+              hitSlop={HIT_SLOP}
+              style={styles.backButton}
+              onPress={goBack}>
               <ArrowLeftTallIcon width={28} />
             </RN.TouchableOpacity>
             <RN.Text style={styles.title}>Розыгрыш</RN.Text>

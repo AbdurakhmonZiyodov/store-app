@@ -70,16 +70,18 @@ const LoginScreen: React.FC = () => {
             <RN.View style={styles.inputContainer}>
               <TextField
                 name="login"
-                // @ts-ignore
                 control={control}
+                autoCapitalize="none"
+                autoCorrect={false}
                 rules={{required: true}}
                 placeholder="Логин или телефон"
               />
 
               <TextField
                 name="password"
-                // @ts-ignore
                 control={control}
+                autoCapitalize="none"
+                autoCorrect={false}
                 isPassword
                 rules={{required: true}}
                 placeholder="Пароль"
